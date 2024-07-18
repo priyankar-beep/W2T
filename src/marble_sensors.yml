@@ -1,0 +1,187 @@
+# Description Sensors.yml File
+# dataset:
+#   path: [file path name]
+# sensors:
+ 
+#  [sensor_id]: # the sensor id is taken from the specific dataset
+#       Sensor_type: [type of sensor] # PIR, Magnetic, 
+#       connectivity: [connectivity type] #example, Bluetooth, ZigBee
+#       room:  [the room where the sensor is installed] # Kitchen, Bedroom1, Bathroom2, etc. 
+#       household_item_monitored: [Type of the item] # Compulsory for sensors that monitor items. Examples Furniture type, home appliance
+#       location _monitored: [location name] # Compulsory for sensors that monitor locations (Examples are PIR and presence sensors). It could be a specific room or a specific area of the room. Examples: entrance, dining table area, kitchen area. 
+#       does_reveal_location_while_active: [Boolean] # It is true when the sensor reveals the subject's location for each instant within the activation interval. For instance, this value is True for the pressure switch and presence sensor. On the other hand, it is False for the magnetic and plug sensors.
+#       does_reveal_location_at_activation: [Boolean] # Normally True for all (unless some automation is in place)
+#       does_reveal_location_at_deactivation: [Boolean] # False for items that may turn off by itself
+#       sensor_property: [sensor activation property] # Property derived from monitored item or location, example, PantryDrawerOpen, NearTheStove, FridgeDoorOpen,
+
+#  [sensor_id]: 
+# ….
+
+
+dataset:
+  path: '/home/hubble/unimi/projects/llms/src/version_2/data/marble/one_subject'
+
+sensors:
+  R1: 
+    sensor_type: magnetic
+    connectivity: bluetooth
+    room: kitchen
+    household_item_monitored: pantry drawer
+    does_reveal_location_at_activation: True
+    does_reveal_location_at_deactivation: False
+    does_reveal_location_while_active: False
+    sensor_property: PantryDrawerOpen
+    
+  R2: 
+    sensor_type: magnetic
+    connectivity: bluetooth
+    room: kitchen
+    household_item_monitored: cutlery drawer
+    does_reveal_location_at_activation: True
+    does_reveal_location_at_deactivation: False
+    does_reveal_location_while_active: False
+    sensor_property: CulteryDrawerOpen
+
+  R5: 
+    sensor_type: magnetic
+    connectivity: bluetooth
+    room: kitchen
+    household_item_monitored: pot drawer
+    does_reveal_location_at_activation: True
+    does_reveal_location_at_deactivation: False
+    does_reveal_location_while_active: False
+    sensor_property: PotDrawerOpen
+
+  R7: 
+    sensor_type: magnetic
+    connectivity: bluetooth
+    room: kitchen
+    household_item_monitored: fridge
+    does_reveal_location_at_activation: True
+    does_reveal_location_at_deactivation: False
+    does_reveal_location_while_active: False
+    sensor_property: FridgeDoorOpen
+ 
+  R6: 
+    sensor_type: magnetic
+    connectivity: bluetooth
+    room: medicine area
+    household_item_monitored: medicine cabinet
+    does_reveal_location_at_activation: True
+    does_reveal_location_at_deactivation: False
+    does_reveal_location_while_active: False
+    sensor_property: MedicineCabinetOpen
+  
+  E1: 
+    sensor_type: electric
+    connectivity: bluetooth
+    room: kitchen
+    household_item_monitored: stove
+    does_reveal_location_at_activation: True
+    does_reveal_location_at_deactivation: False
+    does_reveal_location_while_active: False
+    sensor_property: StoveON
+ 
+  E2: 
+    sensor_type: electric
+    connectivity: bluetooth
+    room: living room
+    household_item_monitored: television
+    does_reveal_location_at_activation: True
+    does_reveal_location_at_deactivation: False
+    does_reveal_location_while_active: False
+    sensor_property: TelevisionON
+
+  common_pressure_mat: &pressure_mat_dining
+    sensor_type: pressure mat
+    connectivity: bluetooth
+    room: dining room
+    household_item_monitored: chair
+    does_reveal_location_at_activation: True
+    does_reveal_location_at_deactivation: True
+    does_reveal_location_while_active: True
+    sensor_property: OnTheChair
+  P1: 
+    <<: *pressure_mat_dining        
+  P4: 
+    <<: *pressure_mat_dining      
+  P5: 
+    <<: *pressure_mat_dining     
+  P6: 
+    <<: *pressure_mat_dining
+
+  common_pressure_mat_living: &pressure_mat_living
+    sensor_type: pressure mat
+    connectivity: bluetooth
+    room: living room
+    household_item_monitored: couch
+    does_reveal_location_at_activation: True
+    does_reveal_location_at_deactivation: True
+    does_reveal_location_while_active: True
+    sensor_property: OnTheCouch
+  P3: 
+    <<: *pressure_mat_living        
+  P7: 
+    <<: *pressure_mat_living      
+  P8: 
+    <<: *pressure_mat_living     
+  P9: 
+    <<: *pressure_mat_living
+
+  P2: 
+    sensor_type: pressure mat
+    connectivity: bluetooth
+    room: office
+    household_item_monitored: chair
+    does_reveal_location_at_activation: True
+    does_reveal_location_at_deactivation: True
+    does_reveal_location_while_active: True
+    sensor_property: OnTheChair
+
+  S1: 
+    sensor_type: smartphone
+    connectivity: bluetooth
+    room: ''
+    household_item_monitored: phone call
+    does_reveal_location_at_activation: False
+    does_reveal_location_at_deactivation: False
+    does_reveal_location_while_active: False
+    sensor_property: SmartphoneUsage
+
+  S2: 
+    sensor_type: Smartphone
+    connectivity: bluetooth
+    room: ''
+    household_item_monitored: phone call
+    does_reveal_location_at_activation: False
+    does_reveal_location_at_deactivation: False
+    does_reveal_location_while_active: False
+    sensor_property: SmartphoneUsage
+           
+# sensors_present_at_a_location:
+#   hall: []
+#   out: []
+#   kitchen:
+#     - E1
+#     - R1
+#     - R2
+#     - R5
+#     - R7
+#   medicine_area:
+#     - R6
+#   living_room:
+#     - E2
+#     - P3
+#     - P7
+#     - P8
+#     - P9
+#   dining_room:
+#     - P1
+#     - P4
+#     - P5
+#     - P6
+#   office:
+#     - P2
+# —-
+# The content of sensor_property.yml for sensor id R1 (sensor_type: magnetic, room: kitchen, household_item_monitored: pantry drawer) and E1 (sensor_type: electric, room: kitchen, household_item_monitored: Stove) are described as follows:
+

@@ -1,0 +1,241 @@
+# Description sensor_property.yml File
+# This file provides information on the sensor properties for various household items. The configurations below include the detail of sensor_property.  For each senosr_property, multiple states can be defined. For each sensor_state, we need to define a helping verb, a verb, and a preposition to build natural language sentences.
+#
+# Structure of sensor_property.yml
+# Sensors_description:
+#      [file path] # path to sensor.yml file
+
+
+# Sensor_properties:
+# [sensor_property:] # This value should be the same as the sensor_property field of the Sensors.yml. It describes the action that a sensor is installed to detect. A sensor can be associated with multiple states based on the window. We have identified three states, i.e, inner, already_active, and persistent. Moreover, a state may be both already active and persistent. Different states require different parts of speech, such as helping verbs, verbs, and prepositions, to represent a window in textual description. We first understand the format for defining different states, followed by examples:
+#     inner: 
+#       helping_verb_start: [String] 
+#       verb_start : [String] 
+#       preposition_start: [String] 
+#       helping_verb_end: [String]
+#       verb_end : [String]
+#       preposition_end: [String]
+          
+#     persistent: 
+#       helping_verb: [String]
+#       verb : [String] 
+#       preposition: [String]
+
+#     already_active: 
+#       helping_verb: [String] 
+#       verb : [String] 
+#       preposition: [String]
+
+#     already_active_and_persistent_state: 
+#       helping_verb_start: [String] 
+#       verb_start : [String]
+#       preposition_start: [String]
+#       helping_verb_end: [String]
+#       verb_end : [String] 
+#       preposition_end: [String]
+
+
+# Structure of the sentence for ‘inner’ state:
+# They [HELPING_VERB_START] [VERB_START] [PREPOSITION_START ] the [HOUSEHOLD_ITEM_MONITORED]. They [HELPING_VERB_END] [VERB_END] [PREPOSITION_END] the [HOUSEHOLD_ITEM_MONITORED ] for [TIME_IN_SECONDS] [TIME_UNIT].
+
+# Structure of the sentence for already_active state:
+# They [HELPING_VERB] already [VERB] [PREPOSITION the [HOUSEHOLD_ITEM_MONITORED].
+
+# Structure of the sentence for persistent state:
+# They [HELPING_VERB_START] [VERB_START] [PREPOSITION_START ] the [HOUSEHOLD_ITEM_MONITORED].
+
+# Structure of the sentence for already_active_and_persistent state:
+# They [HELPING_VERB_START] already [VERB_START] [PREPOSITION_START] the [HOUSEHOLD_ITEM_MONITORED]. They [HELPING_VERB_END} [VERB_END] [PREPOSITION_END] the [HOUSEHOLD_ITEM_MONITORED ] for [TIME_IN_SECONDS] [TIME_UNIT].
+
+# Note: It is also possible that, based on the sentence structure, helping verbs, verbs, or prepositions may not be required. In such cases, we provide an 'empty' string in the unused part-of-speech slot.
+
+# Example 1: "They sit on the chair." (This example corresponds to a persistent state. In this sentence, there is no helping verb, but there is a verb (i.e., "sit") and a preposition (i.e., "on"). Therefore, to maintain the structure of the sentence, the helping verb is replaced by an empty string.)
+# Example 2: "They sit on the chair. They stay in the chair for 10 seconds." (The example indicates an inner  state. The first sentence 'They sit on the chair.' includes a main verb (sit), and a preposition ('on'). Therefore, to maintain the structure of the sentence, an empty string as a replacement is needed for the helping verb. In the second sentence 'They stay in the chair for 10 seconds.', it includes a verb ('stay'), and a preposition ('in'). No helping verb is present in this sentence. Therefore, to maintain the structure of the sentence, we replace the helping verb with an empty string.)
+# Example 3: "They are already sitting on the chair." (This example corresponds to an already active state. In this sentence, there is a helping verb ("are"), a main verb ("sitting"), and a preposition ("on"). Therefore, to maintain the structure of the sentence, no replacement is needed for the helping verb.)
+# Example 4: They are already sitting on the chair. They stay in the chair for 10 seconds. (The example corresponds to an already active and persistent state. The first sentence 'They are already sitting on the chair.' includes a helping verb ('are'), a main verb ('sitting'), and a preposition ('on'). Therefore, to maintain the structure of the sentence, no replacement is needed for the helping verb. In the second sentence 'They stay in the chair for 10 seconds.', it includes a verb ('stay'), and a preposition ('in'). No helping verb is present in this sentence. Therefore, to maintain the structure of the sentence, we replace the helping verb with an empty string.)
+
+# -------------------------------------------------------------------------------------------------------------------
+
+sensors_description: '/home/hubble/work/project_generalization/src/marble_sensors.yml'
+
+FridgeDoorOpen:
+  persistent_state: 
+    helping_verb: ''
+    verb: 'open'
+    preposition: ''
+  already_active_state: 
+    helping_verb: 'is'
+    verb: 'open'
+    preposition: ''
+  already_active_and_persistent_state: 
+    helping_verb: 'is'
+    verb: 'open'
+    preposition: ''      
+  inner_state: 
+    helping_verb: ''
+    verb: 'open'
+    preposition: ''
+
+PantryDrawerOpen:
+  persistent_state: 
+    helping_verb: ''
+    verb: 'open'
+    preposition: ''
+  already_active_state: 
+    helping_verb: 'is'
+    verb: 'open'
+    preposition: ''
+  already_active_and_persistent_state: 
+    helping_verb: 'is'
+    verb: 'open'
+    preposition: ''      
+  inner_state: 
+    helping_verb: ''
+    verb: 'open'
+    preposition: ''
+
+CulteryDrawerOpen:
+  persistent_state: 
+    helping_verb: ''
+    verb: 'open'
+    preposition: ''
+  already_active_state: 
+    helping_verb: 'is'
+    verb: 'open'
+    preposition: ''
+  already_active_and_persistent_state: 
+    helping_verb: 'is'
+    verb: 'open'
+    preposition: ''      
+  inner_state: 
+    helping_verb: ''
+    verb: 'open'
+    preposition: ''
+
+PotDrawerOpen:
+  persistent_state: 
+    helping_verb: ''
+    verb: 'open'
+    preposition: ''
+  already_active_state: 
+    helping_verb: 'is'
+    verb: 'open'
+    preposition: ''
+  already_active_and_persistent_state: 
+    helping_verb: 'is'
+    verb: 'open'
+    preposition: ''      
+  inner_state: 
+    helping_verb: ''
+    verb: 'open'
+    preposition: ''
+
+MedicineCabinetOpen:
+  persistent_state: 
+    helping_verb: ''
+    verb: 'open'
+    preposition: ''
+  already_active_state: 
+    helping_verb: 'is'
+    verb: 'open'
+    preposition: ''
+  already_active_and_persistent_state: 
+    helping_verb: 'is'
+    verb: 'open'
+    preposition: ''      
+  inner_state: 
+    helping_verb: ''
+    verb: 'open'
+    preposition: ''   
+
+StoveON:
+  persistent_state: 
+    helping_verb: ''
+    verb: 'turn on'
+    preposition: ''
+  already_active_state: 
+    helping_verb: 'is'
+    verb: 'turned on'
+    preposition: ''
+  already_active_and_persistent_state: 
+    helping_verb: 'is'
+    verb: 'turned on'
+    preposition: ''      
+  inner_state: 
+    helping_verb: ''
+    verb: 'turn on'
+    preposition: ''   
+
+TelevisionON:
+  persistent_state: 
+    helping_verb: ''
+    verb: 'turn on'
+    preposition: ''
+  already_active_state: 
+    helping_verb: 'is'
+    verb: 'turned on'
+    preposition: ''
+  already_active_and_persistent_state: 
+    helping_verb: 'is'
+    verb: 'turned on'
+    preposition: ''      
+  inner_state: 
+    helping_verb: ''
+    verb: 'turn on'
+    preposition: ''  
+
+OnTheChair:
+  persistent_state: 
+    helping_verb: ''
+    verb: 'sit'
+    preposition: 'on'
+  already_active_state: 
+    helping_verb: 'are'
+    verb: 'sitting'
+    preposition: 'on'
+  already_active_and_persistent_state: 
+    helping_verb: 'are'
+    verb: 'sitting'
+    preposition: 'on'      
+  inner_state: 
+    helping_verb: ''
+    verb: 'sit'
+    preposition: 'on'
+
+OnTheCouch:
+  persistent_state: 
+    helping_verb: ''
+    verb: 'sit'
+    preposition: 'on'
+  already_active_state: 
+    helping_verb: 'are'
+    verb: 'sitting'
+    preposition: 'on'
+  already_active_and_persistent_state: 
+    helping_verb: 'are'
+    verb: 'sitting'
+    preposition: 'on'      
+  inner_state: 
+    helping_verb: ''
+    verb: 'sit'
+    preposition: 'on'
+
+SmartphoneUsage:
+  persistent_state: 
+    helping_verb: ''
+    verb: 'start'
+    preposition: ''
+  already_active_state: 
+    helping_verb: 'are'
+    verb: 'involved'
+    preposition: 'in'
+  already_active_and_persistent_state: 
+    helping_verb: 'are'
+    verb: 'involved'
+    preposition: 'in'      
+  inner_state: 
+    helping_verb: ''
+    verb: 'start'
+    preposition: ''  
+
+
